@@ -18,6 +18,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(httplib)
 
 add_executable(rest ${SOURCE} 
-                    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+                    ${CMAKE_CURRENT_SOURCE_DIR}/main.cc)
 target_include_directories(rest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(rest httplib OpenSSL::SSL OpenSSL::Crypto)
