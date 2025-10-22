@@ -1,8 +1,9 @@
 #include<iostream>
 #include"EmployerServer.h"
+#include "Handler.h"
 
 
-EmployerServer::EmployerServer(const std::uint32_t& port):ip("0.0.0.0"),port(port) {
+EmployerServer::EmployerServer(const std::uint32_t& port):ip("localhost"),port(port) {
 }
 
 EmployerServer::EmployerServer(const std::string& ip, const std::uint32_t& port):ip(ip),port(port) {
@@ -16,12 +17,15 @@ EmployerServer::~EmployerServer()
 void EmployerServer::start()
 {
     std::cout<<"Starting server ......"<<std::endl;
-    server.set_pre_routing_handler([](const auto& req, auto& res) {
-  if (req.path == "/hello") {
-    res.set_content("world", "text/html");
-    return httplib::Server::HandlerResponse::Handled;
-  }
-  return httplib::Server::HandlerResponse::Unhandled;
-});
+    Handler* handler= Handler::getInstance();
+    server.set_pre_routing_handler([&handler](const auto& req, auto& res) {
+      std::cout<<"request : "<<req.path<<std::endl;
+      if(req.path.find("/vkthrk") != std::string::npos)
+      {
+       handler->handle(req, res);
+       return httplib::Server::HandlerResponse::Handled;
+      }
+      return httplib::Server::HandlerResponse::Unhandled;
+    });
     server.listen(ip, port);
 }

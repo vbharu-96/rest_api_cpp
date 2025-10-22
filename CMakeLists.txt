@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12) 
+cmake_minimum_required(VERSION 3.16) 
 project(rest LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -16,6 +16,8 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(httplib)
+
+add_subdirectory(test)
 
 add_executable(rest ${SOURCE} 
                     ${CMAKE_CURRENT_SOURCE_DIR}/main.cc)
