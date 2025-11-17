@@ -3,10 +3,18 @@
 #include "Handler.h"
 
 
-EmployerServer::EmployerServer(const std::uint32_t& port):ip("localhost"),port(port) {
+EmployerServer::EmployerServer(const std::uint32_t& port)
+                              :ip("localhost"),
+                               port(port),
+                               server("build/cert/cert.pem", "build/cert/key.pem") 
+{
 }
 
-EmployerServer::EmployerServer(const std::string& ip, const std::uint32_t& port):ip(ip),port(port) {
+EmployerServer::EmployerServer(const std::string& ip, const std::uint32_t& port)
+                              :ip(ip),
+                               port(port),
+                               server("build/cert/cert.pem", "build/cert/key.pem")
+{
 }
 
 EmployerServer::~EmployerServer()

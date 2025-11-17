@@ -17,7 +17,7 @@ class EmployerServer {
 
 
     private:
-      httplib::Server server;
+      httplib::SSLServer server;
       //Router router;
       std::uint32_t port;
       std::string ip;
