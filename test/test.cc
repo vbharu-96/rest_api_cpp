@@ -1,7 +1,7 @@
 #include "httplib.h"
 #include "gtest/gtest.h"
 
-static httplib::Client cli("localhost",8080);
+static httplib::SSLClient cli("localhost",8080);
 
 TEST(REST_API_TEST, BasicTest)
 {
